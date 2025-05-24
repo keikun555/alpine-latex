@@ -10,7 +10,12 @@
 
 name: Publish Docker image
 
-on: [push]
+on: 
+  push:
+    paths:
+      - Dockerfile
+      - .github/workflows/docker-publish.yml
+      - .dockerignore
 
 jobs:
   push_to_registry:
