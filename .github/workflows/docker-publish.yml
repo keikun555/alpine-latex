@@ -42,14 +42,21 @@ jobs:
         with:
           images: kimada/alpine-latex
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
+          platforms: linux/amd64,linux/arm64
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: kimada/alpine-latex:latest
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation
