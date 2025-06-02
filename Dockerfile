@@ -22,6 +22,9 @@ RUN apk add --no-cache inkscape
 # To make it easier to run commands in the container
 RUN apk add --no-cache make
 
+# Install git for github actions
+RUN apk add --no-cache git
+
 ENV PATH=$PATH:/usr/share/texmf-dist/scripts/latexindent
 
 WORKDIR /data
